@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Basics</string>
+    <string name="tv_hello_text">Android Basics</string>
+    <string name="btn_calc_text">Calculator</string>
+    <string name="btn_exit_text">Exit</string>
+
+    <string name="btn_percent_text">%</string>
+    <string name="btn_ce_text">CE</string>
+    <string name="btn_clear_text">C</string>
+    <string name="btn_backspace_text">\u232B</string>
+
+    <string name="btn_inverse_text">\u215F\u2093</string>
+    <string name="btn_square_text">x\u00B2</string>
+    <string name="btn_sqrt_text">\u221AX</string>
+    <string name="btn_divide_text">\u00F7</string>
+
+    <string name="btn_7_text">7</string>
+    <string name="btn_8_text">8</string>
+    <string name="btn_9_text">9</string>
+    <string name="btn_multiply_text">x</string>
+
+    <string name="btn_4_text">4</string>
+    <string name="btn_5_text">5</string>
+    <string name="btn_6_text">6</string>
+    <string name="btn_difference_text">-</string>
+
+    <string name="btn_1_text">1</string>
+    <string name="btn_2_text">2</string>
+    <string name="btn_3_text">3</string>
+    <string name="btn_sum_text">+</string>
+
+    <string name="btn_sign_text">+/-</string>
+    <string name="btn_0_text">0</string>
+    <string name="btn_comma_text">,</string>
+    <string name="btn_result_text">=</string>
+</resources>
