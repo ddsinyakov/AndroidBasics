@@ -42,55 +42,10 @@
                 style="@style/ButtonOperation"
                 android:id="@+id/btnPercent"
                 android:text="@string/btn_percent_text"/>
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnClearE"
-                android:text="@string/btn_ce_text" />
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnClearAll"
-                android:text="@string/btn_clear_text" />
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnBackspace"
-                android:text="@string/btn_backspace_text" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
             <Button
                 style="@style/ButtonOperation"
                 android:id="@+id/btnInverse"
                 android:text="@string/btn_inverse_text" />
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnSquare"
-                android:text="@string/btn_square_text" />
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnSqrt"
-                android:text="@string/btn_sqrt_text" />
-
-            <Button
-                style="@style/ButtonOperation"
-                android:id="@+id/btnDivide"
-                android:text="@string/btn_divide_text" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
 
             <Button
                 style="@style/ButtonDigit"
@@ -120,6 +75,16 @@
             android:layout_weight="1">
 
             <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnClearE"
+                android:text="@string/btn_ce_text" />
+
+            <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnSquare"
+                android:text="@string/btn_square_text" />
+
+            <Button
                 style="@style/ButtonDigit"
                 android:id="@+id/btn4"
                 android:text="@string/btn_4_text" />
@@ -147,6 +112,16 @@
             android:layout_weight="1">
 
             <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnClearAll"
+                android:text="@string/btn_clear_text" />
+
+            <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnSqrt"
+                android:text="@string/btn_sqrt_text" />
+
+            <Button
                 style="@style/ButtonDigit"
                 android:id="@+id/btn3"
                 android:text="@string/btn_3_text" />
@@ -172,6 +147,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
+            <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnBackspace"
+                android:text="@string/btn_backspace_text" />
+
+            <Button
+                style="@style/ButtonOperation"
+                android:id="@+id/btnDivide"
+                android:text="@string/btn_divide_text" />
 
             <Button
                 style="@style/ButtonDigit"
