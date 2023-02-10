@@ -33,4 +33,6 @@
     <string name="btn_0_text">0</string>
     <string name="btn_comma_text">,</string>
     <string name="btn_result_text">=</string>
+
+    <string name="calc_divide_zero_msg">Cannot divide by zero</string>
 </resources>
