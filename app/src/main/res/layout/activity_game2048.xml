@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_2048"
+    tools:context=".Game2048Activity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.054">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:background="#ECCB5D"
+            android:gravity="center"
+            android:text="2048"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TableRow>
+
+                <TextView android:text="Score\n69,9k" />
+
+                <TextView android:text="Best\n69,9k" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button android:text="new" />
+
+                <Button android:text="undo" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="#A49580"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+            <TextView style="@style/Cell_2" android:id="@+id/cell00"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell01"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell02"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell03"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+            <TextView style="@style/Cell_2" android:id="@+id/cell10"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell11"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell12"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell13"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+            <TextView style="@style/Cell_2" android:id="@+id/cell20"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell21"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell22"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell23"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+            <TextView style="@style/Cell_2" android:id="@+id/cell30"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell31"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell32"/>
+            <TextView style="@style/Cell_2" android:id="@+id/cell33"/>
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,14 +16,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.calcButton)
-            .setOnClickListener(this::addButtonClick);
+            .setOnClickListener(this::startCalcButtonClick);
+
+        findViewById(R.id.game2048Button)
+            .setOnClickListener(this::startGame2048ButtonClick);
 
         findViewById(R.id.exitButton)
             .setOnClickListener(this::exitButtonClick);
     }
 
-    private void addButtonClick(View v) {
+    private void startCalcButtonClick(View v) {
         Intent calcIntent = new Intent(this, CalcActivity.class);
+        startActivity(calcIntent);
+    }
+
+    private void startGame2048ButtonClick(View v) {
+        Intent calcIntent = new Intent(this, Game2048Activity.class);
         startActivity(calcIntent);
     }
 

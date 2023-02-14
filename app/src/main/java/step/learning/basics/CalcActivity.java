@@ -40,8 +40,6 @@ public class CalcActivity extends AppCompatActivity {
 
         history = 0;
 
-
-
         minusSign = getString(R.string.btn_difference_text);
 
         for (int i = 0; i < 10; i++) {
@@ -58,6 +56,7 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.btnInverse).setOnClickListener(this::inverseClick);
         findViewById(R.id.btnComma).setOnClickListener(this::commaClick);
         findViewById(R.id.btnSqrt).setOnClickListener(this::sqrtClick);
+        findViewById(R.id.btnSquare).setOnClickListener(this::squareClick);
         findViewById(R.id.btnClearAll).setOnClickListener(this::clearAllClick);
         findViewById(R.id.btnClearE).setOnClickListener(this::clearClick);
         findViewById(R.id.btnBackspace).setOnClickListener(this::backSpaceClick);
@@ -73,6 +72,9 @@ public class CalcActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putCharSequence("history", tvHistory.getText());
         outState.putCharSequence("result", tvResult.getText());
+        outState.putCharSequence("history", Double.toString(history));
+        outState.putCharSequence("operation", operation);
+        outState.putCharSequence("needClear", Boolean.toString(needClear));
     }
 
     @Override
@@ -81,11 +83,12 @@ public class CalcActivity extends AppCompatActivity {
 
         tvHistory.setText(savedInstanceState.getCharSequence("history"));
         tvResult.setText(savedInstanceState.getCharSequence("history"));
+        history = Double.parseDouble(savedInstanceState.getCharSequence("history").toString());
+        operation = savedInstanceState.getCharSequence("operation").toString();
+        needClear = Boolean.parseBoolean(savedInstanceState.getCharSequence("needClear").toString());
     }
 
     private void digitClick(View v) {
-        String result = tvResult.getText().toString();
-        if (result.replace(".", "").length() >= 10) return;
         String digit = ((Button) v).getText().toString();
 
         if (needClear) {
@@ -93,6 +96,9 @@ public class CalcActivity extends AppCompatActivity {
             tvResult.setText(digit);
             return;
         }
+
+        String result = tvResult.getText().toString();
+        if (result.replace(".", "").length() >= 10) return;
 
         tvResult.setText(result.equals("0")
             ? digit
@@ -112,7 +118,7 @@ public class CalcActivity extends AppCompatActivity {
     private void pmClick(View v) {
         String result = tvResult.getText().toString();
 
-        if (result.equals(0)) {
+        if (result.equals("0")) {
             return;
         }
 
@@ -140,7 +146,9 @@ public class CalcActivity extends AppCompatActivity {
 
         setArgument(arg);
 
-        tvHistory.setText(String.format("1(%s) =", result));
+        tvHistory.setText(String.format("1/(%s) =", result));
+
+        needClear = true;
     }
 
     private double getArgument( String resultText ) {
@@ -155,12 +163,16 @@ public class CalcActivity extends AppCompatActivity {
             result = result.substring( 0, result.length() - 1 ) ;
         }
 
+        if (result.endsWith( "." )) {
+            result = result.substring( 0, result.length() - 1 ) ;
+        }
+
         tvResult.setText( result.replace( "-", minusSign ) ) ;
     }
 
     private void sqrtClick(View v) {
-        String result = tvResult.getText().toString().replace(minusSign, "-");
-        double arg = Double.parseDouble(result);
+        String result = tvResult.getText().toString();
+        double arg = getArgument(result);
 
         arg = Math.sqrt(arg);
 
@@ -169,16 +181,27 @@ public class CalcActivity extends AppCompatActivity {
             return;
         }
 
-        tvHistory.setText(String.format("sqrt(%s)", arg));
+        tvHistory.setText(String.format("sqrt(%s)", result));
         history = arg;
 
-        result = String.format(Locale.getDefault(), "%f", arg);
+        setArgument(arg);
 
         needClear = true;
-
-        tvResult.setText(result.replace("-", minusSign));
     }
 
+    private void squareClick(View v) {
+        String result = tvResult.getText().toString();
+        double arg = getArgument(result);
+
+        arg = Math.pow(arg, 2);
+
+        tvHistory.setText(String.format("%s^2", result));
+        history = arg;
+
+        setArgument(arg);
+
+        needClear = true;
+    }
 
     private void alert(int messageId) {
         Toast.makeText(CalcActivity.this, messageId, Toast.LENGTH_LONG).show();
@@ -221,7 +244,7 @@ public class CalcActivity extends AppCompatActivity {
                 ? "0"
                 : result.substring(0, result.length() - 1);
 
-        if (result == minusSign) {
+        if (result.equals(minusSign)) {
             result = "0";
         }
 
@@ -229,32 +252,50 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     private void operationClick(View v) {
+        if(!operation.equals("")){
+            resultClick(v);
+        }
+
         operation = ((Button) v).getText().toString();
         String result = tvResult.getText().toString();
         history = Double.parseDouble(result);
-        tvHistory.setText(result + " " + operation);
+        tvHistory.setText(String.format("%s %s", result, operation));
         needClear = true;
     }
 
     private  void resultClick(View v) {
-        if (operation == "") return;
-        tvHistory.setText(tvHistory.getText() + " " + operation);
+        if (operation.equals("")) return;
+
+
+        String result = tvResult.getText().toString();
+        double arg = getArgument(result);
+
+        tvHistory.setText(String.format("%s %s = ", tvHistory.getText(), result));
 
         if (operation.equals(getString(R.string.btn_sum_text))) {
-
+            setArgument(history + arg);
         }
 
         if (operation.equals(getString(R.string.btn_difference_text))) {
-
+            setArgument(history - arg);
         }
 
         if (operation.equals(getString(R.string.btn_multiply_text))) {
-
+            setArgument(history * arg);
         }
 
         if (operation.equals(getString(R.string.btn_divide_text))) {
-
+            if (arg == 0) {
+                alert(R.string.calc_divide_zero_msg);
+                tvResult.setText("0");
+                tvHistory.setText("");
+                operation = null;
+                return;
+            }
+            setArgument(history / arg);
         }
 
+        needClear = true;
+        operation = "";
     }
 }
