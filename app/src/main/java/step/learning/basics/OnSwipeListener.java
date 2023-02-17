@@ -31,20 +31,20 @@ public class OnSwipeListener implements View.OnTouchListener {
         @Override
         public boolean onFling(@NonNull MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
             boolean result = false ;
-            float dx = e2.getX() - e1.getX() ;   // растояние по Х, проведенное по экрану
-            float dy = e2.getY() - e1.getY() ;   // растояние по Y, проведенное по экрану
-            if( Math.abs( dx ) > Math.abs( dy ) ) {   // проведение скорее горизонтальное
-                if( Math.abs( dx ) >= MIN_SWIPE_DISTANCE
-                        && Math.abs( velocityX ) >= MIN_SWIPE_VELOCITY ) {
+            float dx = e2.getX() - e1.getX() ;
+            float dy = e2.getY() - e1.getY() ;
+            if( Math.abs( dx ) > Math.abs( dy ) ) {
+                if( Math.abs( dx ) >= MIN_SWIPE_DISTANCE && Math.abs( velocityX ) >=
+                        MIN_SWIPE_VELOCITY ) {
                     if( dx > 0 ) OnSwipeRight() ;
                     else OnSwipeLeft() ;
                     result = true ;
                 }
             }
-            else {   // проведение скорее вертикальное
-                if( Math.abs( dy ) >= MIN_SWIPE_DISTANCE
-                        && Math.abs( velocityY ) >= MIN_SWIPE_VELOCITY ) {
-                    if( dy > 0 ) OnSwipeBottom() ;  // Y увеличивается вниз
+            else {
+                if( Math.abs( dy ) >= MIN_SWIPE_DISTANCE && Math.abs( velocityY ) >=
+                        MIN_SWIPE_VELOCITY ) {
+                    if( dy > 0 ) OnSwipeBottom() ;
                     else OnSwipeTop() ;
                     result = true ;
                 }

@@ -11,6 +11,7 @@
     </style>
     
     <style name="Cell_0" parent="CellBase">
+        <item name="android:textSize">50sp</item>
         <item name="android:textColor">#BFAFA0</item>
         <item name="android:background">@color/game_bg_0</item>
     </style>
