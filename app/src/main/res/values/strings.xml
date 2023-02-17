@@ -3,7 +3,7 @@
     <string name="btn_game2048_text">2048</string>
     <string name="tv_hello_text">Android Basics</string>
     <string name="btn_calc_text">Calculator</string>
-    <string name="btn_game2048_text">2048</string>
+    <string name="btn_rates_text">Rates</string>
     <string name="btn_exit_text">Exit</string>
 
     <string name="btn_percent_text">%</string>
@@ -43,5 +43,6 @@
     <string name="score_text">Score\n%d</string>
     <string name="best_score_text">Best\n%d</string>
 
-
+    <!-- Rates -->
+    <string name="rates_title">Currency rates</string>
 </resources>
