@@ -32,11 +32,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/tvJson"
+<!--        <TextView-->
+<!--            android:id="@+id/tvJson"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="JSON will be here" />-->
+
+        <LinearLayout
+            android:id="@+id/ratesContainer"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="JSON will be here" />
+            android:layout_height="wrap_content" />
+
     </ScrollView>
 
 

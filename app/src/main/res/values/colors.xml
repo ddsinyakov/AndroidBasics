@@ -19,4 +19,7 @@
     <color name="game_bg_4">#EDE1C8</color>
     <color name="game_bg_8">#F3B27F</color>
     <color name="game_bg_16">#F69D6C</color>
+
+    <color name="rate_bg_even_color">#C8B3DD</color>
+    <color name="rate_bg_odd_color">#B3DDDD</color>
 </resources>

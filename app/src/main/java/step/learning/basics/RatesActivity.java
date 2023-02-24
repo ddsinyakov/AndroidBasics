@@ -1,11 +1,16 @@
 package step.learning.basics;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -18,15 +23,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 public class RatesActivity extends AppCompatActivity {
 
-    private TextView tvJson;
+    private LinearLayout ratesContainer;
     private String content;
     private final List<Rate> rates = new ArrayList<>();
 
@@ -35,7 +37,7 @@ public class RatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
 
-        tvJson = findViewById(R.id.tvJson);
+        ratesContainer = findViewById(R.id.ratesContainer);
 
         new Thread(this::loadUrl)
                 .start();
@@ -66,8 +68,6 @@ public class RatesActivity extends AppCompatActivity {
     }
 
     private void parseContent() {
-        StringBuilder str = new StringBuilder();
-
         try {
             JSONArray jRates = new JSONArray(content);
 
@@ -75,29 +75,65 @@ public class RatesActivity extends AppCompatActivity {
                 rates.add(new Rate(jRates.getJSONObject(i)));
             }
 
-            new Thread(this::showRates).start();
+            runOnUiThread(this::showRates);
         }
         catch (JSONException ex) {
             Log.d("parseContent()", ex.getMessage());
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void showRates() {
-        StringBuilder str = new StringBuilder();
+//        StringBuilder str = new StringBuilder();
+//
+//        if (rates.size() != 0) {
+//            str
+//                .append("Exchange date: ")
+//                .append(rates.get(0).getExchangeDate())
+//                .append("/n");
+//
+//            for (int i = 0; i < rates.size(); i++) {
+//                str
+//                    .append(rates.get(i).toString())
+//                    .append("\n");
+//            }
+//
+//            runOnUiThread(() -> tvJson.setText(str.toString()));
+//        }
 
-        if (rates.size() != 0) {
-            str
-                .append("Exchange date: ")
-                .append(rates.get(0).getExchangeDate())
-                .append("/n");
+        Drawable ratesBgEven = AppCompatResources.getDrawable(
+                getApplicationContext(), R.drawable.rates_bg_even);
 
-            for (int i = 0; i < rates.size(); i++) {
-                str
-                    .append(rates.get(i).toString())
-                    .append("\n");
+        Drawable ratesBgOdd = AppCompatResources.getDrawable(
+                getApplicationContext(), R.drawable.rates_bg_odd );
+
+        LinearLayout.LayoutParams evenLayoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT );
+        evenLayoutParams.setMargins(7,5,7,5);
+
+        LinearLayout.LayoutParams oddLayoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT );
+        oddLayoutParams.setMargins(7,5,7,5);
+        oddLayoutParams.gravity = Gravity.END;
+
+        boolean isOdd = true;
+        for (Rate rate : this.rates) {
+            isOdd = !isOdd;
+            TextView tv = new TextView(this);
+            tv.setText(rate.getTxt() + "\n" + rate.getCc() + " " + rate.getRate());
+            tv.setPadding(7,5,7,5);
+
+            if (isOdd) {
+                tv.setBackground(ratesBgOdd);
+                tv.setLayoutParams(oddLayoutParams);
+            } else {
+                tv.setBackground(ratesBgEven);
+                tv.setLayoutParams(evenLayoutParams);
             }
 
-            runOnUiThread(() -> tvJson.setText(str.toString()));
+            ratesContainer.addView(tv);
         }
     }
 
